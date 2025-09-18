@@ -60,6 +60,7 @@ function Segment({
         style={{ 
           opacity: isActive ? 1 : 0,
           willChange: 'opacity',
+          transform: 'translateZ(0)'
         }}
         
       />
