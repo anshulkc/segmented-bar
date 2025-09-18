@@ -30,34 +30,38 @@ function Segment({
 }) {
   const isActive = index === activeIndex;
 
-  // Left position (percent of container)
-  // Added the 1 to adjust for the widthPct gap
-  const leftPct =
-    index <= activeIndex ? (index * unitPct) + 1 : (index + 1) * unitPct;
+  // 1) Base (static) placement: never animates
+  const baseLeftPct = index * unitPct;     // stays constant; no transition on 'left'
+  const widthPct = unitPct - 1.2;                // 1 unit (active visual double comes from scaleX)
 
-  // 
+  // 2) Transform-only motion
+  // Move segments to the RIGHT of the active by exactly one base slot.
+  const offset =
+    index > activeIndex ? "translateX(100%)" : "translateX(0)";
 
-  // Base width is one "unit"; active doubles visually with scaleX(2)
-  // Added the -1 for the gap
-  const widthPct = unitPct - 1;
-
-  // Transforms-only for the doubling
-  const transform = isActive ? "scaleX(2)" : "scaleX(1)";
-  const transformOrigin = "left center";
+  const scale  = isActive ? "scaleX(2)" : "scaleX(1)";
+  const transform = `${offset} ${scale}`;
+  const transformOrigin = "left center";   // active grows to the right
 
   return (
     <div
-      className="absolute top-0 h-full rounded-full bg-gray-200 transition-[left,transform] duration-300"
+      className="absolute top-0 h-full rounded-full bg-gray-200 transition-transform duration-300"
       style={{
-        left: `${leftPct}%`,
+        left: `${baseLeftPct}%`,   // static; not transitioned
         width: `${widthPct}%`,
         transform,
         transformOrigin,
+        willChange: "transform",
       }}
     >
+      {/* Blue overlay fades in via opacity (compositor-friendly) */}
       <div
         className="w-full h-full rounded-full bg-blue-500 transition-opacity duration-300"
-        style={{ opacity: index === activeIndex ? 1 : 0 }}
+        style={{ 
+          opacity: isActive ? 1 : 0,
+          willChange: 'opacity',
+        }}
+        
       />
     </div>
   );

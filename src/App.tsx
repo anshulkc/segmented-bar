@@ -4,7 +4,7 @@ import { SegmentedProgressBar } from "./segmented-bar";
 export function SegmentedProgressBarDemo() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   const handleClick = (i: number) => {
     setActiveIndex(i);
@@ -12,7 +12,7 @@ export function SegmentedProgressBarDemo() {
 
   return (
     <div className="fixed inset-0 flex w-full flex-col items-center justify-center gap-4">
-      <div className="w-96">
+      <div className="w-60">
         <SegmentedProgressBar
           totalSteps={totalSteps}
           activeIndex={activeIndex}
