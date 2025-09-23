@@ -42,7 +42,7 @@ function Segment({
 
   return (
     <div
-      className="absolute top-0 h-full bg-gray-200 rounded-full transition-transform duration-300"
+      className="absolute top-0 h-full bg-gray-200 rounded-full transition-transform duration-500"
       style={{
         left: `${baseLeftPct}%`,
         width: `${widthPct}%`,
@@ -51,12 +51,8 @@ function Segment({
         willChange: "transform",
       }}
     >
-      {/* 
-        This container is now for positioning the overlays and managing opacity.
-        'relative' is crucial for the absolutely positioned caps inside.
-      */}
       <div
-        className="w-full h-full relative transition-opacity duration-300"
+        className="w-full h-full relative transition-opacity duration-500"
         style={{
           opacity: isActive ? 1 : 0,
           willChange: 'opacity',
