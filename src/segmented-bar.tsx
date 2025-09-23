@@ -42,7 +42,7 @@ function Segment({
 
   return (
     <div
-      className="absolute top-0 h-full bg-gray-200 rounded-full transition-transform duration-500"
+      className="absolute top-0 h-full bg-gray-200 rounded-full transition-transform duration-300"
       style={{
         left: `${baseLeftPct}%`,
         width: `${widthPct}%`,
@@ -52,7 +52,7 @@ function Segment({
       }}
     >
       <div
-        className="w-full h-full relative transition-opacity duration-500"
+        className="w-full h-full relative transition-opacity duration-300"
         style={{
           opacity: isActive ? 1 : 0,
           willChange: 'opacity',
